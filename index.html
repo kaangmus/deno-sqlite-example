@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>index.html</title>
+    <link rel="stylesheet" href="./view/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:," />
+    <script type="module" src="./view/lib/myGreeter.js"></script>
+    <script type="module" src="./view/lib/textfield.js"></script>
+    <script type="module" src="./view/lib/modalWindow.js"></script>
+  </head>
+  <body>
+    <my-greeter mood="awesome" style="margin-left: 4em;"></my-greeter>
+    <text-field id="send" button-value="Füg hinzu!"></text-field>
+    <text-field id="query" button-value="Such!"></text-field>
+    <div>
+      <text-field
+        id="display"
+        button-value="Display DB!"
+        button-name="display"
+      ></text-field>
+      <text-field
+        id="reset"
+        button-value="Reset!"
+        button-name="reset"
+      ></text-field>
+    </div>
+  </body>
+  <script>
+    const sendForm = document.querySelector("#send")
+    sendForm.items = [
+      ["name", "text", "Tim"],
+      ["email", "email"],
+      ["address", "text"],
+      ["phone", "number"],
+      ["product", "text"],
+    ]
+    const queryForm = document.querySelector("#query")
+    queryForm.items = [
+      ["table", "text", "seller"],
+      ["column", "text", "e.g. name"],
+      ["searchword", "text", "e.g. Tim"],
+    ]
+    window.addEventListener("load", event => {
+      const modalWindow = document.querySelector("modal-window")
+      if (modalWindow) modalWindow.showModal = true
+    })
+  </script>
+</html>
