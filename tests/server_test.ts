@@ -28,4 +28,4 @@ Deno.test(function ShouldGetCorrectMimeType(): void {
   assertEquals(getContentTypeFromUrl(urls[6]), "text/javascript")
 })
 
-await Deno.runTests()
+// await Deno.runTests()
