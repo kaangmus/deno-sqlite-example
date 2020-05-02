@@ -1,6 +1,6 @@
 # deno-sqlite-example
 
-Manipulate an sqlite db through the browser with custom elements
+Manipulate an sqlite db with the browser with custom elements
 
 ## How it works
 
