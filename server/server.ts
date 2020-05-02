@@ -13,10 +13,10 @@ type RequestHandlers = {
 }
 type Opts = Record<string, any> & { db?: any; reqBody?: string }
 
-async function runServer(callbacks: RequestHandlers, args: Opts) {
-  console.log("Listening to http://localhost:8000/")
-  for await (const req of serve({ port: 8000 })) {
-    const [body, hPairs, status] = await generateRespData(req, callbacks, args)
+async function runServer(port: number, callbacks: RequestHandlers, args: Opts) {
+  console.log(`Listening to port ${port}`)
+  for await (const req of serve({ port })) {
+    const [body, hPairs, status] = await makeResponseInput(req, callbacks, args)
     req.respond({ body, headers: generateHeaders(hPairs), status })
   }
 }
@@ -26,7 +26,7 @@ function generateHeaders(hPairs: ResponseInput[1], headers = new Headers()) {
   return headers
 }
 
-async function generateRespData(
+async function makeResponseInput(
   req: ServerRequest,
   callbacks: RequestHandlers,
   args: Opts
@@ -39,9 +39,9 @@ async function generateRespData(
         ? await handleFileRequest(pathname, req)
         : await callbacks.handleGetRequest(req, args)
       break
-    case "POST":
-      const reqBody = decode(await Deno.readAll(req.body))
-      return [undefined, undefined, 200]
+    // case "POST":
+    // const reqBody = decode(await Deno.readAll(req.body))
+    // return [undefined, undefined, 200]
     default:
       return [undefined, undefined, 200]
   }
@@ -51,7 +51,6 @@ async function handleFileRequest(
   pathname: string,
   req: ServerRequest
 ): Promise<ResponseInput> {
-  // if the file is not found, return 404
   if (!(await exists(pathname))) return [undefined, undefined, 404]
   return Deno.readFile(pathname)
     .then(

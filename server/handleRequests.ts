@@ -1,7 +1,7 @@
 import { open, save } from "https://deno.land/x/sqlite/mod.ts"
 import { generateHtml, addTableRows } from "./generateHtml.ts"
 import { ResponseInput, Opts, ServerRequest } from "./server.ts"
-import { DbOpen } from "./app.ts"
+import { DbOpen } from "../app.ts"
 
 type Seller = {
   name: string | null
