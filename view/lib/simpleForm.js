@@ -9,7 +9,7 @@ import { LitElement, html, css, customElement, property, } from "https://unpkg.c
  * Use the customElement decorator to define your class as
  * a custom element. Registers <my-element> as an HTML tag.
  */
-let TextField = class TextField extends LitElement {
+let SimpleForm = class SimpleForm extends LitElement {
     constructor() {
         super(...arguments);
         this.items = [[]];
@@ -89,14 +89,14 @@ let TextField = class TextField extends LitElement {
 };
 __decorate([
     property({ type: Array })
-], TextField.prototype, "items", void 0);
+], SimpleForm.prototype, "items", void 0);
 __decorate([
     property({ type: String, attribute: "button-value" })
-], TextField.prototype, "buttonValue", void 0);
+], SimpleForm.prototype, "buttonValue", void 0);
 __decorate([
     property({ type: String, attribute: "button-name" })
-], TextField.prototype, "buttonName", void 0);
-TextField = __decorate([
-    customElement("text-field")
-], TextField);
-export { TextField };
+], SimpleForm.prototype, "buttonName", void 0);
+SimpleForm = __decorate([
+    customElement("simple-form")
+], SimpleForm);
+export { SimpleForm };

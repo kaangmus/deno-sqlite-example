@@ -41,7 +41,11 @@ function makeObjectOfUrlParams(reqUrl: string) {
 }
 
 async function displayTable(db: DbOpen, table: string) {
-  return [...db.query(`SELECT * FROM ${table}`)]
+  try {
+    return [...db.query(`SELECT * FROM ${table}`)]
+  } catch {
+    return [["", "", "", "", ""]]
+  }
 }
 
 async function resetDb(db: DbOpen, table: string) {

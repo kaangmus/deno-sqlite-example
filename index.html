@@ -10,24 +10,24 @@
     />
     <link rel="icon" href="data:," />
     <script type="module" src="./view/lib/myGreeter.js"></script>
-    <script type="module" src="./view/lib/textfield.js"></script>
+    <script type="module" src="./view/lib/simpleForm.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/gh/timonson/creaim/components/lib/modalWindow/modalWindow.js"></script>
   </head>
   <body>
     <my-greeter mood="awesome" style="margin-left: 4em;"></my-greeter>
-    <text-field id="send" button-value="Füg hinzu!"></text-field>
-    <text-field id="query" button-value="Such!"></text-field>
+    <simple-form id="send" button-value="Füg hinzu!"></simple-form>
+    <simple-form id="query" button-value="Such!"></simple-form>
     <div>
-      <text-field
+      <simple-form
         id="display"
         button-value="Display DB!"
         button-name="display"
-      ></text-field>
-      <text-field
+      ></simple-form>
+      <simple-form
         id="reset"
         button-value="Reset!"
         button-name="reset"
-      ></text-field>
+      ></simple-form>
     </div>
   </body>
   <script>

@@ -11,8 +11,8 @@ import {
  * Use the customElement decorator to define your class as
  * a custom element. Registers <my-element> as an HTML tag.
  */
-@customElement("text-field")
-export class TextField extends LitElement {
+@customElement("simple-form")
+export class SimpleForm extends LitElement {
   @property({ type: Array }) items = [[]]
   @property({ type: String, attribute: "button-value" }) buttonValue = "Submit"
   @property({ type: String, attribute: "button-name" }) buttonName = ""
