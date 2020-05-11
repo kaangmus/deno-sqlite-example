@@ -18,18 +18,20 @@
   </head>
   <body>
     <my-greeter topic="Database" theme-color="darkturquoise"></my-greeter>
-    <simple-form id="send" button-value="Add!"></simple-form>
-    <simple-form id="query" button-value="Search!"></simple-form>
+    <simple-form id="send" button-value="Add!" is-submitting></simple-form>
+    <simple-form id="query" button-value="Search!" is-submitting></simple-form>
     <div>
       <simple-form
         id="display"
         button-value="Display DB!"
         button-name="display"
+        is-submitting
       ></simple-form>
       <simple-form
         id="reset"
         button-value="Reset!"
         button-name="reset"
+        is-submitting
       ></simple-form>
     </div>
   </body>

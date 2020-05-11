@@ -2,7 +2,6 @@ import {
   LitElement,
   html,
   css,
-  unsafeCSS,
   customElement,
   property,
   // @ts-ignore
@@ -12,7 +11,7 @@ import {
 export class MyGreeter extends (LitElement as any) {
   @property() topic = "Website"
   @property() mood = "awesome"
-  @property({ attribute: "theme-color" })
+  @property({ attribute: "theme-color" }) themeColor = ""
   attributeChangedCallback(
     name: string,
     oldValue: string | null,
@@ -22,7 +21,6 @@ export class MyGreeter extends (LitElement as any) {
     if (newValue === oldValue) return
     switch (name) {
       case "theme-color":
-        this.addEventListener("click", () => {})
         this.style.setProperty("--themeColor", newValue)
         break
       default:

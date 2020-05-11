@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { LitElement, html, css, customElement, property, } from "https://unpkg.com/lit-element/lit-element.js?module";
+import { LitElement, html, css, customElement, property, } from "/home/ubustreet/Playground/lit/node_modules/lit-element/lit-element";
 /**
  * Use the customElement decorator to define your class as
  * a custom element. Registers <my-element> as an HTML tag.
@@ -12,20 +12,24 @@ import { LitElement, html, css, customElement, property, } from "https://unpkg.c
 let SimpleForm = class SimpleForm extends LitElement {
     constructor() {
         super(...arguments);
-        this.items = [[""]];
+        this.items = [["nnn"]];
         this.primaryHsl = "";
         this.buttonValue = "Submit";
         this.buttonName = "";
-        this.isSubmittting = false;
+        this.isSubmitBtn = false;
         this.formValues = {};
     }
     //prettier-ignore
     firstUpdated() {
-        if (!this.isSubmittting)
-            this.shadowRoot
-                .querySelector("#submit")
-                .querySelector("sumit")
-                .addEventListener("click", (e) => this.handleButtonClick(e));
+        console.log("firstUpdated");
+        this.shadowRoot
+            .querySelector("#submit")
+            .querySelector("sumit")
+            .addEventListener("click", (e) => this.handleButtonClick(e));
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        console.log("connectedCallback");
     }
     attributeChangedCallback(name, oldValue, newValue) {
         super.attributeChangedCallback(name, oldValue, newValue);
@@ -33,9 +37,11 @@ let SimpleForm = class SimpleForm extends LitElement {
             return;
         switch (name) {
             case "primary-hsl":
+                console.log("newValue", newValue);
                 if (newValue === null)
                     return void 0;
                 newValue.split(" ").forEach((str, i) => {
+                    console.log(i, str);
                     return i === 0
                         ? this.style.setProperty("--primary-h", str)
                         : i === 1
@@ -49,11 +55,13 @@ let SimpleForm = class SimpleForm extends LitElement {
         }
     }
     handleButtonClick(event) {
+        console.log(this.items);
         event.preventDefault();
         this.formValues = Object.fromEntries(this.items.map(([label]) => [
             label.toLowerCase(),
             this.shadowRoot.querySelector(`#${label.toLowerCase()}`).value,
         ]));
+        console.log(this.formValues);
         let myEvent = new CustomEvent("pseudo-submit", {
             detail: { message: "clicked on submit." },
             bubbles: true,
@@ -115,7 +123,7 @@ let SimpleForm = class SimpleForm extends LitElement {
       #submit {
         height: 40px;
         background-color: var(--primary);
-        border: 1.7px solid var(--primaryDark);
+        border: 1.5px solid var(--primaryDark);
         border-radius: 15px;
         margin: 1em 1.5em 0 0;
         cursor: pointer;
@@ -128,7 +136,7 @@ let SimpleForm = class SimpleForm extends LitElement {
     render() {
         return html `
       <form action="0.0.0.0:8000" method="get" class="form-example">
-        ${this.items[0].length > 0 && !!this.items[0][0]
+        ${this.items[0].length > 0
             ? this.items.map(([label, type, placeholder]) => html `
                 <label for="${label}"
                   >${label}:
@@ -166,8 +174,8 @@ __decorate([
     property({ type: String, attribute: "button-name" })
 ], SimpleForm.prototype, "buttonName", void 0);
 __decorate([
-    property({ type: Boolean, reflect: true, attribute: "is-submitting" })
-], SimpleForm.prototype, "isSubmittting", void 0);
+    property({ type: Boolean, reflect: true })
+], SimpleForm.prototype, "isSubmitBtn", void 0);
 __decorate([
     property()
 ], SimpleForm.prototype, "formValues", void 0);

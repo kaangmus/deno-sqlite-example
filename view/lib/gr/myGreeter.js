@@ -10,8 +10,10 @@ let MyGreeter = class MyGreeter extends LitElement {
         super(...arguments);
         this.topic = "Website";
         this.mood = "awesome";
+        this.themeColor = "";
     }
     attributeChangedCallback(name, oldValue, newValue) {
+        super.attributeChangedCallback(name, oldValue, newValue);
         if (newValue === oldValue)
             return;
         switch (name) {
@@ -20,7 +22,6 @@ let MyGreeter = class MyGreeter extends LitElement {
                 break;
             default:
         }
-        super.attributeChangedCallback(name, oldValue, newValue);
     }
     static get styles() {
         return css `
@@ -52,7 +53,7 @@ __decorate([
 ], MyGreeter.prototype, "mood", void 0);
 __decorate([
     property({ attribute: "theme-color" })
-], MyGreeter.prototype, "attributeChangedCallback", null);
+], MyGreeter.prototype, "themeColor", void 0);
 MyGreeter = __decorate([
     customElement("my-greeter")
 ], MyGreeter);
