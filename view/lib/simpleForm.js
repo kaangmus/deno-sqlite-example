@@ -88,7 +88,7 @@ let SimpleForm = class SimpleForm extends LitElement {
     }
 };
 __decorate([
-    property({ type: Array })
+    property({ type: Array, reflect: true })
 ], SimpleForm.prototype, "items", void 0);
 __decorate([
     property({ type: String, attribute: "button-value" })

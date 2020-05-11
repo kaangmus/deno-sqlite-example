@@ -12,16 +12,15 @@ let MyGreeter = class MyGreeter extends LitElement {
         this.mood = "awesome";
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        super.attributeChangedCallback(name, oldValue, newValue);
         if (newValue === oldValue)
             return;
         switch (name) {
             case "theme-color":
-                this.addEventListener("click", () => { });
                 this.style.setProperty("--themeColor", newValue);
                 break;
             default:
         }
+        super.attributeChangedCallback(name, oldValue, newValue);
     }
     static get styles() {
         return css `

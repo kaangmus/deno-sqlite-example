@@ -13,7 +13,7 @@ import {
  */
 @customElement("simple-form")
 export class SimpleForm extends LitElement {
-  @property({ type: Array }) items = [[]]
+  @property({ type: Array, reflect: true }) items = [[]]
   @property({ type: String, attribute: "button-value" }) buttonValue = "Submit"
   @property({ type: String, attribute: "button-name" }) buttonName = ""
 

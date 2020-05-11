@@ -1,7 +1,7 @@
 import { serve, ServerRequest } from "https://deno.land/std/http/server.ts"
 import * as path from "https://deno.land/std/path/mod.ts"
 import { encode, decode } from "https://deno.land/std/encoding/utf8.ts"
-import { exists, existsSync } from "https://deno.land/std/fs/mod.ts"
+import {  existsSync } from "https://deno.land/std/node/fs.ts"
 
 type ResponseInput = [
   undefined | string | Uint8Array,
@@ -51,7 +51,7 @@ async function handleFileRequest(
   pathname: string,
   req: ServerRequest
 ): Promise<ResponseInput> {
-  if (!(await exists(pathname))) return [undefined, undefined, 404]
+  if (!(await existsSync(pathname))) return [undefined, undefined, 404]
   return Deno.readFile(pathname)
     .then(
       (data: Uint8Array): ResponseInput => [
