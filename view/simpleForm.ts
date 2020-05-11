@@ -64,7 +64,7 @@ export class SimpleForm extends (LitElement as any) {
         this.shadowRoot.querySelector(`#${label.toLowerCase()}`).value,
       ])
     )
-    let myEvent = new CustomEvent("pseudo-submit", {
+    const myEvent = new CustomEvent("pseudo-submit", {
       detail: { message: "clicked on submit." },
       bubbles: true,
       composed: true,
